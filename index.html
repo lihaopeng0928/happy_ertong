@@ -244,48 +244,125 @@
     }
 
     .counter-section {
-      min-height: 60vh;
+      min-height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: var(--warm-white);
-      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--warm-white) 0%, var(--blush) 50%, var(--warm-white) 100%);
+      padding: 60px 20px;
       position: relative;
       z-index: 2;
+      overflow: hidden;
+    }
+
+    .counter-section::before {
+      content: '♥';
+      position: absolute;
+      font-size: 200px;
+      color: var(--rose-soft);
+      opacity: 0.1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseHeart 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseHeart {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.15; }
     }
 
     .counter-section h2 {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(14px, 2vw, 18px);
+      font-size: clamp(12px, 1.8vw, 16px);
       color: var(--text-light);
-      letter-spacing: 6px;
-      margin-bottom: 20px;
+      letter-spacing: 8px;
+      margin-bottom: 15px;
       font-weight: 300;
+      text-transform: uppercase;
+    }
+
+    .counter-wrapper {
+      display: flex;
+      gap: 80px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .counter-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
 
     .counter-number {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(60px, 10vw, 120px);
+      font-size: clamp(70px, 12vw, 140px);
       color: var(--rose);
       font-weight: 400;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      position: relative;
+      text-shadow: 0 0 30px rgba(232, 180, 184, 0.4);
+    }
+
+    .counter-number::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose), transparent);
     }
 
     .counter-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
+      font-size: 14px;
       color: var(--text-light);
-      letter-spacing: 4px;
+      letter-spacing: 6px;
+      margin-bottom: 12px;
     }
 
-    .counter-section .counter-sub {
+    .counter-sub {
       font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
+      font-size: 13px;
       color: var(--text-medium);
-      margin-top: 15px;
       font-weight: 300;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .counter-item::before,
+    .counter-item::after {
+      content: '✦';
+      position: absolute;
+      font-size: 12px;
+      color: var(--gold-light);
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    .counter-item::before {
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 0s;
+    }
+
+    .counter-item::after {
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 1s;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
     }
 
     .childhood-section {
@@ -372,6 +449,32 @@
       background: var(--cream);
       position: relative;
       z-index: 2;
+    }
+
+    .letter-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .letter-image {
+      flex-shrink: 0;
+      width: 180px;
+      animation: floatImage 3s ease-in-out infinite;
+    }
+
+    .letter-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(196, 168, 130, 0.15);
+    }
+
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     .letter-container {
@@ -709,8 +812,18 @@
         font-size: 11px;
       }
       
+      .letter-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .letter-image {
+        width: 140px;
+      }
+      
       .letter-container {
         padding: 40px 25px;
+        width: 100%;
       }
       
       .letter-container::before,
@@ -738,11 +851,14 @@
 <div class="particles-container" id="particles"></div>
 
 <nav>
-  <div class="logo">FOR YOU</div>
+  <div class="logo">FOR MY SWEETIE</div>
   <div class="date">JUNE 01 · 2026</div>
 </nav>
 
 <section class="hero">
+  <div class="letter-image">
+      <img src="images/44d19842a98fbf82e3bf752adb98f8dd.gif" alt="爱心">
+  </div>
   <div class="hero-content">
     <div class="date-line">JUNE 1ST, 2026</div>
     <div class="title-en">Happy Children's Day</div>
@@ -750,6 +866,8 @@
     <div class="divider"></div>
     <div class="subtitle">though you've grown up, you will always be my little one</div>
   </div>
+
+  
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="arrow"></div>
@@ -757,10 +875,20 @@
 </section>
 
 <section class="counter-section">
-  <h2">认识你已经</h2>
-  <div class="counter-number" id="counter">0</div>
-  <div class="counter-label">DAYS</div>
-  <div class="counter-sub">愿你永远是那个被疼爱的小朋友</div>
+  <h2>我们一起走过的时光</h2>
+  <div class="counter-wrapper">
+    <div class="counter-item">
+      <div class="counter-number" id="counter1">0</div>
+      <div class="counter-label">DAYS</div>
+      <div class="counter-sub">认识你的每一天</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-number" id="counter2">0</div>
+      <div class="counter-label">DAYS</div>
+      <div class="counter-sub">在一起的日子</div>
+    </div>
+  </div>
+  <div class="counter-sub" style="margin-top: 30px; text-align: center;">愿你永远是那个被疼爱的小朋友，我们会永远在一起！</div>
 </section>
 
 <section class="childhood-section">
@@ -802,16 +930,23 @@
 </section>
 
 <section class="letter-section">
-  <div class="letter-container">
-    <div class="letter-greeting">亲爱的小朋友：</div>
-    <div class="letter-body">
-      <p>今天是你的节日，我想把最特别的祝福送给你。</p>
-      <p>虽然你已經是大人了，但在我眼里，你永远都是那个需要被疼爱、被珍惜的小朋友。你的笑容那么纯粹，你的眼神那么清澈，你永远保持着对这个世界的善意和好奇。</p>
-      <p>我想守护你的童心，让你在忙碌的生活中依然能感受到简单快乐。愿你有糖吃的时候笑得更甜，愿你有梦的时候睡得更香。</p>
-      <p><strong>不管未来发生什么，我都会在你身边，像守护童年最珍贵的宝藏一样守护你。</strong></p>
-      <p>儿童节快乐，我的小朋友。愿你永远年轻，永远热泪盈眶。</p>
+  <div class="letter-wrapper">
+    <div class="letter-image">
+      <img src="images/354452f18f720dae04911e8bc71672cf.gif" alt="爱心" style="background: var(--warm-white);">
     </div>
-    <div class="letter-signature">永远爱你的人</div>
+    <div class="letter-container">
+      <div class="letter-greeting">亲爱的马梦圆小朋友：</div>
+      <div class="letter-body">
+        <p>今天是属于你的节日，我想把最特别的祝福送给你。</p>
+        <p>虽然你早已长大成人，但在我心里，你永远都是那个值得被偏爱、被珍惜的小朋友。你有着最温柔的笑容，最真诚的眼神，也始终保留着对这个世界的善意与热爱。</p>
+        <p>和你在一起的日子里，我越来越觉得幸运。你会认真地对待身边的人，会因为一点小事开心很久，也会在别人需要的时候悄悄给予温暖。这样的你，总让我忍不住想多疼爱你一点，多守护你一点。</p>
+        <p>不知不觉，我们已经快要迎来两周年纪念日了。时间过得真快，快到我仿佛还能想起刚认识你的模样，却又已经陪你走过了这么多日子。</p>
+        <p>我希望未来的每一天，你都能保持那份难得的童心。在忙碌和疲惫的时候，依然能够感受到生活里的小美好；在遇到困难的时候，依然拥有向前走的勇气；在开心的时候，有人陪你一起分享；在难过的时候，有人愿意一直站在你身边。</p>
+        <p>谢谢你来到我的世界，也谢谢你陪我走过这一段珍贵的时光。</p>
+        <p>儿童节快乐，我的小朋友。</p>
+        <p>愿你永远善良，永远纯粹，永远被爱；愿你眼里有光，心中有梦，前方有期待。而我，也希望能够陪着你，一起走过未来很多很多个春夏秋冬。</p>
+    </div>
+    <div class="letter-signature">永远爱你的PeaceLEE</div>
   </div>
 </section>
 
@@ -921,40 +1056,54 @@
   })();
 
   (function() {
-    const counterEl = document.getElementById('counter');
-    const target = 1027;
+    const KNOW_DATE = new Date('2024-02-08');
+    const TOGETHER_DATE = new Date('2024-06-15');
+
+    function getDaysPassed(startDate) {
+      const now = new Date();
+      const diff = now - startDate;
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+
+    const targets = [
+      { el: document.getElementById('counter1'), days: getDaysPassed(KNOW_DATE) },
+      { el: document.getElementById('counter2'), days: getDaysPassed(TOGETHER_DATE) }
+    ];
     let started = false;
 
-    function animateCounter() {
+    function animateCounters() {
       if (started) return;
       started = true;
-      const duration = 2000;
-      const startTime = performance.now();
 
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-        counterEl.textContent = current;
+      targets.forEach(({ el, days }) => {
+        const duration = 2000;
+        const startTime = performance.now();
 
-        if (progress < 1) {
-          requestAnimationFrame(update);
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(eased * days);
+          el.textContent = current;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
         }
-      }
 
-      requestAnimationFrame(update);
+        requestAnimationFrame(update);
+      });
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          animateCounter();
+          animateCounters();
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
 
-    observer.observe(counterEl);
+    targets.forEach(({ el }) => observer.observe(el));
   })();
 
   const observerOptions = {
@@ -1017,28 +1166,16 @@
   });
 
   document.addEventListener('DOMContentLoaded', () => {
+    const KNOW_DATE = new Date('2024-02-08');
+    const TOGETHER_DATE = new Date('2024-06-15');
     const counterSection = document.querySelector('.counter-section');
     const rect = counterSection.getBoundingClientRect();
     if (rect.top < window.innerHeight) {
-      const counterEl = document.getElementById('counter');
-      const target = 1027;
-      const duration = 2000;
-      const startTime = performance.now();
-      let started = true;
-
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-        counterEl.textContent = current;
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      }
-
-      requestAnimationFrame(update);
+      const now = new Date();
+      const counter1 = document.getElementById('counter1');
+      const counter2 = document.getElementById('counter2');
+      counter1.textContent = Math.floor((now - KNOW_DATE) / (1000 * 60 * 60 * 24));
+      counter2.textContent = Math.floor((now - TOGETHER_DATE) / (1000 * 60 * 60 * 24));
     }
   });
 </script>
